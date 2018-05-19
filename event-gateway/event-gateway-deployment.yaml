@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: event-gateway
+  namespace: operation-dev-infra
+  labels:
+    app: event-gateway
+spec:
+  selector:
+    matchLabels:
+      app: event-gateway
+  replicas: 2
+  template:
+    metadata:
+      name: event-gateway
+      namespace: operation-dev-infra
+      labels:
+        app: event-gateway
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - event-gateway
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: event-gateway
+          image: serverless/event-gateway:0.7.0
+          args:
+            - "-db-hosts=etcd-cluster-client:2379"
+            - "-log-format=text"
+            - "-log-level=debug"
+          livenessProbe:
+            httpGet:
+              path: "/v1/status"
+              port: 4001
+          readinessProbe:
+            httpGet:
+              path: "/v1/status"
+              port: 4001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-gateway
+  namespace: operation-dev-infra
+spec:
+  ports:
+    - name: events
+      port: 4000
+    - name: config
+      port: 4001
+  selector:
+    app: event-gateway
