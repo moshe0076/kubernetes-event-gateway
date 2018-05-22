@@ -24,7 +24,7 @@ spec:
             memory: 150Mi   # Adjust to suit needs
         env:
         - name: function_namespace
-          value: openfaas-fn
+          value: operation-dev-infra
         - name: read_timeout
           value: "20s"
         - name: write_timeout
