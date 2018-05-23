@@ -1,0 +1,9 @@
+provider:
+  name: faas
+  gateway: https://faas-gateway-operation-dev.sweetinn-app.net
+
+functions:
+  set-pod-replica:
+    lang: python
+    handler: ./set-pod-replica
+    image: AWS_ACCOUNT_NUMBER.dkr.ecr.eu-west-1.amazonaws.com/set-pod-replica
