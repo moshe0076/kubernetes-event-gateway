@@ -1,6 +1,7 @@
 import boto3
+import os
 import traceback
-
+import json
 
 def updateDynamoDBTable(**kwargs):
     """
@@ -43,6 +44,6 @@ def main(event, context, **kwargs):
     main function
 
     """
-    serviceName=event['serviceName']
-    numberOfPods=int(event['numberOfPods'])
+    serviceName=event['data']['body']['serviceName']
+    numberOfPods=int(event['data']['body']['numberOfPods'])
     updateDynamoDBTable(serviceName=serviceName, numberOfPods=numberOfPods)
