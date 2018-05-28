@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: faas-netesd
-        image: functions/faas-netesd:0.5.1
+        image: functions/faas-netesd:0.5.2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

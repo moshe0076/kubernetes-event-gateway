@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: faas-gateway
-        image: functions/gateway:0.8.0
+        image: functions/gateway:0.8.1
         imagePullPolicy: Always
         env:
         - name: functions_provider_url
@@ -31,6 +31,10 @@ spec:
           value: "35s"
         - name: upstream_timeout  # Must be smaller than read/write_timeout
           value: "30s"
+        - name: faas_prometheus_host
+          value: "prometheus-service"
+        - name: faas_prometheus_port
+          value: "80"
         ports:
         - containerPort: 8080
           protocol: TCP
