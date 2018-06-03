@@ -2,14 +2,14 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: etcd-operator
-  namespace: operation-dev-infra
+  namespace: test-infra
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         name: etcd-operator
-        namespace: operation-dev-infra
+        namespace: test-infra
     spec:
       containers:
       - name: etcd-operator
