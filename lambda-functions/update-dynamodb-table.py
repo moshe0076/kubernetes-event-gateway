@@ -63,5 +63,3 @@ def main(event, context, **kwargs):
     kubeEventId=event['data']['body']['kubeEventId']
     kubeEventTime=event['data']['body']['kubeEventTime']
     updateDynamoDBTable(deploymentName=deploymentName, replicaCount=replicaCount, kubeEventId=kubeEventId, kubeEventTime=kubeEventTime)
-
-

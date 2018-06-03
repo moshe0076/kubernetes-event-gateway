@@ -44,7 +44,7 @@ def initKuberneteDeploymentReplicaCountChange(event, **kwargs):
             "deploymentName": kwargs['deploymentName']
         }
         body=json.dumps(body)
-        url="https://event-gateway-events-operation-dev.sweetinn-app.net/operation-dev-infra/set-pod-replica"
+        url="https://event-gateway-events-test-dev.moshen-app.net/test-infra/set-pod-replica"
         req = urllib2.Request(url, body, {'Content-Type': 'application/json'})
         f = urllib2.urlopen(req)
         response = f.read()
@@ -66,6 +66,8 @@ def initKuberneteDeploymentReplicaCountChange(event, **kwargs):
                 'content': 'There was an error changing replica count'
             }
         )
+
+
 
 def main(event, context, **kwargs):
     """
