@@ -1,6 +1,6 @@
 provider:
   name: faas
-  gateway: https://faas-gateway-operation-dev.sweetinn-app.net
+  gateway: https://faas-gateway-test-dev.moshen-app.net
 
 functions:
   set-pod-replica:
